@@ -9,6 +9,7 @@ import { Marcellus_400Regular } from "@expo-google-fonts/marcellus";
 import { OpenSans_400Regular } from "@expo-google-fonts/open-sans";
 
 import StackRoutes from "./src/routes/StackRoutes";
+import BottomTabRoutes from "./src/routes/BottomTabRoutes";
 
 export default function App() {
     const [appIsReady, setAppIsReady] = useState(false);
