@@ -32,6 +32,8 @@ const itemSize = width / 3;
 export default function Home({ navigation }) {
     return (
         <Container>
+            <StatusBar backgroundColor="transparent" barStyle="light-content" translucent={true}/>
+            
             <SafeAreaView
                 style={{
                     flex: 1,
