@@ -34,5 +34,28 @@ export default styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         flex: 1,
+    },
+
+    cardBox: {
+        backgroundColor: "#F9F9F9",
+    },
+
+    textBox: {
+        paddingVertical: 10,
+        paddingHorizontal: 5
+    },
+
+    productTitle: {
+        fontSize: 20,
+        textAlign: "center",
+        fontFamily: "OpenSans_400Regular",
+        fontWeight: "bold",
+        letterSpacing: 3
+    },
+
+    productDescription: {
+        fontSize: 14,
+        textAlign: "center",
+        fontFamily: "OpenSans_400Regular"
     }
 });

@@ -3,34 +3,23 @@ import { View, Text, Image, Dimensions, FlatList, TouchableOpacity, SafeAreaView
 import { Feather } from "@expo/vector-icons";
 import { SocialIcon } from "react-native-elements";
 import * as Linking from "expo-linking";
+import Carousel from "react-native-snap-carousel";
 
 import Container from "../../components/Container";
 import Brand from "../../components/Brand";
 import Btn from "../../components/Btn";
 import Section from "../../components/Section";
 
-import styles from "./styles";
+import { galery, products } from "../../data/Portfolio/data";
 
-const galery = [
-    { uri: require("../../../assets/images/Galeria/image_1.png") },
-    { uri: require("../../../assets/images/Galeria/image_2.png") },
-    { uri: require("../../../assets/images/Galeria/image_3.png") },
-    { uri: require("../../../assets/images/Galeria/image_4.png") },
-    { uri: require("../../../assets/images/Galeria/image_5.png") },
-    { uri: require("../../../assets/images/Galeria/image_6.png") },
-    { uri: require("../../../assets/images/Galeria/image_7.png") },
-    { uri: require("../../../assets/images/Galeria/image_8.png") },
-    { uri: require("../../../assets/images/Galeria/image_9.png") },
-];
+import styles from "./styles";
 
 const { width } = Dimensions.get("window");
 const itemSize = width / 3;
 
 export default function Home({ navigation }) {
     return (
-        <Container>
-            <StatusBar backgroundColor="transparent" barStyle="light-content" translucent={true}/>
-            
+        <Container>            
             <SafeAreaView style={{ flex: 1, paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 }}>
                 <ScrollView>
                     <Brand />
@@ -105,17 +94,15 @@ export default function Home({ navigation }) {
                                 numColumns={3}
                                 columnWrapperStyle={{ gap: 7 }}
                                 contentContainerStyle={{ gap: 3 }}
-                                keyExtractor={(item) => item.uri}
+                                keyExtractor={(item) => item.url}
                                 showsVerticalScrollIndicator={false}
                                 scrollEnabled={false}
                                 renderItem={({ item }) => {
                                     return (
-                                        <TouchableOpacity
-                                            style={styles.galeryBox}
-                                        >
+                                        <TouchableOpacity style={styles.galeryBox}>
                                             <Image
                                                 key={item}
-                                                source={item.uri}
+                                                source={item.url}
                                                 style={{
                                                     height: itemSize,
                                                     width: itemSize,
@@ -126,6 +113,30 @@ export default function Home({ navigation }) {
                                 }}
                             />
                         </View>
+                    </Section>
+
+                    <Section sectionTop="Meus" sectionBottom="Produtos">
+                        <Carousel 
+                            data={products}
+                            sliderWidth={width}
+                            itemWidth={width / 1.75 }
+                            loop={true}
+
+                            renderItem={ ({ item }) => (
+                                <View style={ styles.cardBox }>
+                                    <Image source={item.url} style={{ width: "100%", height: width * 0.4 }}/>
+
+                                    <View style={ styles.textBox }>
+                                        <Text style={styles.productTitle}>{item.title}</Text>
+                                        <Text style={styles.productDescription}>{item.description}</Text>
+                                    </View>
+                                </View>
+                            )}
+                        />
+                    </Section>
+
+                    <Section>
+
                     </Section>
                 </ScrollView>
             </SafeAreaView>

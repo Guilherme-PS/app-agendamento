@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 export default function Section({ sectionTop, sectionBottom, children }) {
     return(
         <View style={ styles.container }>
-            <View style={{ paddingHorizontal: 25 }}>
+            <View style={ styles.textBox }>
                 <Text style={styles.sectionTop}>{sectionTop}</Text>
                 <Text style={styles.sectionBottom}>{"\t\t\t\t\t"}{sectionBottom}</Text>
             </View>
@@ -19,6 +19,11 @@ const styles = StyleSheet.create({
         flex: 1, 
         justifyContent: "center",
         marginTop: 25,
+    },
+
+    textBox: {
+        paddingHorizontal: 25,
+        marginBottom: 10
     },
 
     sectionTop: {
