@@ -10,7 +10,9 @@ import Btn from "../../components/Btn";
 export default function Schedules() {
     return(
         <Container>
-            <Text style={{color: "#F9F9F9"}}>Schedules</Text>
+            <View  style={{ paddingHorizontal: 25 }}>
+                <Text style={{color: "#F9F9F9"}}>Schedules</Text>
+            </View>
         </Container>
     );
 }

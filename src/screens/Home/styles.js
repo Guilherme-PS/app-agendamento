@@ -26,5 +26,13 @@ export default styles = StyleSheet.create({
     social: {
         flexDirection: "row",
         gap: 10
+    },
+
+    galeryBox: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        flex: 1,
     }
 });

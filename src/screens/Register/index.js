@@ -14,57 +14,55 @@ export default function Register({ navigation }) {
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
 
-    return(
+    return (
         <Container>
-            <Brand/>
-            <Title title="Cadastre-se"/>
+            <View style={{ paddingHorizontal: 25 }}>
+                <Brand />
+                <Title title="Cadastre-se" />
 
-            <View>
-                <FormItem 
-                    label="Usuário"
-                    placeholder="Digite seu Usuário"
-                    secureTextEntry={false}
-                    onChangeText={setUser}
-                    leftIcon="user"
-                    value={user}
-                />
+                <View>
+                    <FormItem
+                        label="Usuário"
+                        placeholder="Digite seu Usuário"
+                        secureTextEntry={false}
+                        onChangeText={setUser}
+                        leftIcon="user"
+                        value={user}
+                    />
 
-                <FormItem 
-                    label="Senha"
-                    placeholder="Digite sua Senha"
-                    secureTextEntry={ isVisible }
-                    onPress={ () => setVisible(!isVisible) }
-                    leftIcon="lock"
-                    rightIcon={ isVisible ? "eye-off" : "eye" }
-                    onChangeText={setPassword}
-                    value={password}
-                />
+                    <FormItem
+                        label="Senha"
+                        placeholder="Digite sua Senha"
+                        secureTextEntry={isVisible}
+                        onPress={() => setVisible(!isVisible)}
+                        leftIcon="lock"
+                        rightIcon={isVisible ? "eye-off" : "eye"}
+                        onChangeText={setPassword}
+                        value={password}
+                    />
 
-                <FormItem 
-                    label="Confirme sua Senha"
-                    placeholder="Digite Novamente sua Senha"
-                    secureTextEntry={ isVisible }
-                    onPress={ () => setVisible(!isVisible) }
-                    leftIcon="lock"
-                    rightIcon={ isVisible ? "eye-off" : "eye" }
-                    onChangeText={setPasswordConfirm}
-                    value={passwordConfirm}
-                />
+                    <FormItem
+                        label="Confirme sua Senha"
+                        placeholder="Digite Novamente sua Senha"
+                        secureTextEntry={isVisible}
+                        onPress={() => setVisible(!isVisible)}
+                        leftIcon="lock"
+                        rightIcon={isVisible ? "eye-off" : "eye"}
+                        onChangeText={setPasswordConfirm}
+                        value={passwordConfirm}
+                    />
 
-                <Btn
-                    title="Cadastrar"
-                    onPress={ () => {} }
-                    type="solid"
-                />
+                    <Btn title="Cadastrar" onPress={() => {}} type="solid" />
 
-                <Hr/>
+                    <Hr />
 
-                <Btn
-                    title="Página Inicial"
-                    onPress={ () => navigation.navigate("Home") }
-                    type="outline"
-                    fontColor="#F9F9F9"
-                />
+                    <Btn
+                        title="Página Inicial"
+                        onPress={() => navigation.navigate("Home")}
+                        type="outline"
+                        fontColor="#F9F9F9"
+                    />
+                </View>
             </View>
         </Container>
     );

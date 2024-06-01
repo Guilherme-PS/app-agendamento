@@ -10,7 +10,9 @@ import Btn from "../../components/Btn";
 export default function Profile() {
     return(
         <Container>
-            <Text style={{color: "#F9F9F9"}}>PROFILE</Text>
+            <View  style={{ paddingHorizontal: 25 }}>
+                <Text style={{color: "#F9F9F9"}}>PROFILE</Text>
+            </View>
         </Container>
     );
 }
