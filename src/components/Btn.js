@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
     title: {
         color: "#191919",
         fontFamily: "Marcellus_400Regular",
-        fontSize: 18
+        fontSize: 18,
     }
 });
