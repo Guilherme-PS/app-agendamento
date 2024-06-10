@@ -46,6 +46,7 @@ export default function BottomTabRoutes() {
                     borderRadius: 16,
                     backgroundColor: "#D4D4D4",
                     borderTopWidth: 0,
+                    elevation: 0,
                 },
             }}
         >

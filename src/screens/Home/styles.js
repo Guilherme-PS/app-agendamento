@@ -44,24 +44,26 @@ export default styles = StyleSheet.create({
 
     cardBox: {
         backgroundColor: "#F9F9F9",
+        flexDirection: "row",
+        width: "100%",
+        alignItems: "center",
     },
 
     textBox: {
-        paddingVertical: 10,
-        paddingHorizontal: 5
+        flex: 1,
+        paddingHorizontal: 10,
     },
 
     productTitle: {
-        fontSize: 20,
-        textAlign: "center",
+        fontSize: 17,
         fontFamily: "OpenSans_400Regular",
         fontWeight: "bold",
-        letterSpacing: 3
+        letterSpacing: 1,
+        marginBottom: 3
     },
 
     productDescription: {
-        fontSize: 14,
-        textAlign: "center",
+        fontSize: 12,
         fontFamily: "OpenSans_400Regular"
     },
 

@@ -108,7 +108,7 @@ export default function Home({ navigation }) {
                     </View>
 
                     <Section sectionTop="Galeria de" sectionBottom="Fotos">
-                        <View style={styles.galeryBox}>
+                        <View>
                             <FlatList
                                 data={galery}
                                 numColumns={3}
@@ -138,32 +138,39 @@ export default function Home({ navigation }) {
                     </Section>
 
                     <Section sectionTop="Meus" sectionBottom="Produtos">
-                        <Carousel
-                            data={products}
-                            sliderWidth={width}
-                            itemWidth={width / 1.75}
-                            loop={true}
-                            renderItem={({ item }) => (
-                                <View style={styles.cardBox}>
-                                    <Image
-                                        source={item.url}
-                                        style={{
-                                            width: "100%",
-                                            height: width * 0.4,
-                                        }}
-                                    />
+                        <View>
+                            <Carousel
+                                data={products}
+                                sliderWidth={width}
+                                itemWidth={width / 1.15}
+                                loop={true}
+                                autoplay={true}
+                                activeSlideAlignment="center"
+                                autoplayDelay={5000}
+                                autoplayInterval={7000}
+                                renderItem={({ item }) => (
+                                    <View style={styles.cardBox}>
+                                        <Image
+                                            resizeMode="cover"
+                                            source={item.url}
+                                            style={{
+                                                height: 150,
+                                                width: 150
+                                            }}
+                                        />
 
-                                    <View style={styles.textBox}>
-                                        <Text style={styles.productTitle}>
-                                            {item.title}
-                                        </Text>
-                                        <Text style={styles.productDescription}>
-                                            {item.description}
-                                        </Text>
+                                        <View style={styles.textBox}>
+                                            <Text style={styles.productTitle}>
+                                                {item.title}
+                                            </Text>
+                                            <Text style={styles.productDescription}>
+                                                {item.description}
+                                            </Text>
+                                        </View>
                                     </View>
-                                </View>
-                            )}
-                        />
+                                )}
+                            />
+                        </View>
                     </Section>
 
                     <Section

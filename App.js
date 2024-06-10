@@ -7,6 +7,8 @@ import { Allura_400Regular } from "@expo-google-fonts/allura";
 import { Redressed_400Regular } from "@expo-google-fonts/redressed";
 import { Marcellus_400Regular } from "@expo-google-fonts/marcellus";
 import { OpenSans_400Regular } from "@expo-google-fonts/open-sans";
+import { Archivo_500Medium, Archivo_600SemiBold } from "@expo-google-fonts/archivo";
+import { Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 
 import StackRoutes from "./src/routes/StackRoutes";
 import BottomTabRoutes from "./src/routes/BottomTabRoutes";
@@ -23,7 +25,10 @@ export default function App() {
                     Allura_400Regular,
                     Redressed_400Regular,
                     Marcellus_400Regular,
-                    OpenSans_400Regular
+                    OpenSans_400Regular,
+                    Archivo_600SemiBold,
+                    Archivo_500Medium,
+                    Montserrat_400Regular
                 });
             }
             finally {
@@ -47,7 +52,7 @@ export default function App() {
             <NavigationContainer>
                 <StatusBar backgroundColor="transparent" barStyle="light-content" translucent={true}/>
 
-                <StackRoutes/>
+                <BottomTabRoutes/>
             </NavigationContainer>
         </View>
     );

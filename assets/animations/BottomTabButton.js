@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: "center",
-
     },
+    
     btn: {
         borderRadius: 25,
         flexDirection: "row",
