@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default styles = StyleSheet.create({
     usernameBox: {
         paddingHorizontal: 25, 
-        paddingVertical: 110
+        paddingVertical: 125
     },
 
     username: {
@@ -18,6 +18,12 @@ export default styles = StyleSheet.create({
         fontFamily: "Montserrat_400Regular",
         fontSize: 17,
         textAlign: "center"
+    },
+
+    schedulesBtnBox: {
+        flex: 1,
+        backgroundColor: "#E0E0E0", 
+        paddingHorizontal: 25 
     },
 
     schedulesPageBtn: {
@@ -43,8 +49,8 @@ export default styles = StyleSheet.create({
     },
 
     titleBox: {
-        marginTop: 35,
-        marginBottom: 10,
+        marginTop: 50,
+        marginBottom: 15,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
