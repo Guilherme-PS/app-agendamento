@@ -52,7 +52,7 @@ export default function App() {
             <NavigationContainer>
                 <StatusBar backgroundColor="transparent" barStyle="light-content" translucent={true}/>
 
-                <BottomTabRoutes/>
+                <StackRoutes/>
             </NavigationContainer>
         </View>
     );

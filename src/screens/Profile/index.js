@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import Btn from "../../components/Btn";
 import styles from "./styles";
 
 import Container from "../../components/Container";
-import Brand from "../../components/Brand"; 
 
 import { imgPaths } from "../../data/Serviços/ImgPath";
-import AllServices from "../../data/Serviços/Services.json";
+import Services from "../../data/Serviços/Services.json";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Profile({navigation}) {
+export default function Profile() {
+    const navigation = useNavigation();
+
     return (
         <Container>
             <View style={ styles.usernameBox }>
@@ -32,7 +33,7 @@ export default function Profile({navigation}) {
                 </View>
 
                 <FlatList
-                    data={AllServices}
+                    data={Services}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
