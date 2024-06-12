@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Container from "../../components/Container";
+import { ServiceCard } from "./ServiceCard/index";
 import styles from "./styles";
 
-import { imgPaths } from "../../data/Serviços/ImgPath";
 import Services from "../../data/Serviços/Services.json";
 import { useNavigation } from "@react-navigation/native";
 
@@ -19,8 +19,6 @@ export default function Profile() {
         const loadFavorites = async () => {
             const favorites = await _retrieveAllData() || [];
             setFavoriteData(favorites);
-
-            console.log(favorites);
         };
 
         loadFavorites();
@@ -82,39 +80,15 @@ export default function Profile() {
                         const favorite = isFavorite(item.id);
 
                         return (
-                            <TouchableOpacity>
-                                <View style={styles.cardContainer}>
-                                    <View style={styles.imgContainer}>
-                                        <Image
-                                            source={imgPaths[item.id]["url"]}
-                                            style={styles.img}
-                                        />
-                                    </View>
-
-                                    <View style={styles.details}>
-                                        <View>
-                                            <Text style={styles.serviceName}>
-                                                {item.service}
-                                            </Text>
-
-                                            <Text style={styles.servicePrice}>
-                                                R$ {item.price}
-                                            </Text>
-                                        </View>
-
-                                        <TouchableOpacity
-                                            style={styles.favoriteBtn}
-                                            onPress={() => toggleFavorite(item.id)}
-                                        >
-                                            <MaterialCommunityIcons
-                                                name={favorite ? "heart" : "heart-outline"}
-                                                size={20}
-                                                color="#900"
-                                            />
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
+                            <ServiceCard
+                                id={item.id}
+                                service={item.service}
+                                price={item.price}
+                                hours={item.hours}
+                                duration={item.duration}
+                                onToggleFavorite={toggleFavorite}
+                                isFavorited={favorite}
+                            />
                         );
                     }}
                 />
