@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { Input } from "react-native-elements";
 import { Feather } from "@expo/vector-icons";
 
-export default function FormItem({ label, placeholder, secureTextEntry, leftIcon, rightIcon, onPress, onChangeText, value}) {
+export default function FormItem({ label, placeholder, secureTextEntry, leftIcon, rightIcon, onPress, onChangeText, value, errorMessage}) {
     return(
         <Input
             label={ label }
@@ -20,7 +20,7 @@ export default function FormItem({ label, placeholder, secureTextEntry, leftIcon
             rightIconContainerStyle={[styles.iconContainer, { paddingRight: 15 }]}
             onChangeText={ onChangeText }
             value={ value }
-            errorMessage="ERRO AQUI"
+            errorMessage={errorMessage}
             errorStyle={ styles.textError }
         />
     );

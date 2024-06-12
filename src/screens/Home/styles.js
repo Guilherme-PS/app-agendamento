@@ -22,7 +22,6 @@ export default styles = StyleSheet.create({
         gap: 10,
         marginVertical: 25,
     },
-
     vwText: {
         flex: 1,
         flexDirection: "column",
