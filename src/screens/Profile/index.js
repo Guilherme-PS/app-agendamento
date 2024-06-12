@@ -9,11 +9,16 @@ import Services from "../../data/Serviços/Services.json";
 import { useNavigation } from "@react-navigation/native";
 
 import { _consultData, _removeItem, _retrieveAllData, _storeData } from "../../storage/AsyncStorage";
+import { useSchedulesDatabase } from "../../db/useSchedulesDatabase";
+
+import { useLogin } from "../Login/LoginProvider";
 
 export default function Profile() {
     const navigation = useNavigation();
+    const { User } = useLogin();
 
     const [favoriteData, setFavoriteData] = useState([]);
+    const [userData, setUserData] = useState([]);
 
     useEffect(() => {
         const loadFavorites = async () => {
@@ -24,6 +29,18 @@ export default function Profile() {
         loadFavorites();
     }, []);
 
+    const schedulesDatabase = useSchedulesDatabase();
+
+    const fetchUserData = async () => {
+        if(User) {
+            const data = await schedulesDatabase.getUser(User);
+
+            setUserData(data);
+        }
+    }
+
+    fetchUserData();
+    
     const toggleFavorite = useCallback(async (id) => {
         const isFavorite = await _consultData(id.toString());
 
@@ -50,7 +67,7 @@ export default function Profile() {
     return (
         <Container>
             <View style={styles.usernameBox}>
-                <Text style={styles.username}>Olá Usuário</Text>
+                <Text style={styles.username}>Olá {userData.usuario}</Text>
                 <Text style={styles.schedulesCount}>Você tem X Serviço(s) Agendado(s)</Text>
             </View>
 

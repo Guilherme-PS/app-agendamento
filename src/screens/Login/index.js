@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 
 import Container from "../../components/Container";
@@ -8,9 +8,13 @@ import FormItem from "../../components/FormItem";
 import Btn from "../../components/Btn";
 import Hr from "../../components/Hr";
 
-import { initDatabase, createDatabase, SignIn } from "../../db/database";
+import { useSchedulesDatabase } from "../../db/useSchedulesDatabase";
+
+import { useLogin } from "./LoginProvider";
 
 export default function Login({ navigation }) {
+    const { handleLogin } = useLogin();
+    
     const [isVisible, setVisible] = useState(true);
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
@@ -18,9 +22,7 @@ export default function Login({ navigation }) {
     const [userError, setUserError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
-    useState( async () => {
-        await initDatabase();
-    }, []);
+    const schedulesDatabase = useSchedulesDatabase();
 
     const handleSignIn = async (user, password) => {
         if(user !== "" && password !== "") {
@@ -28,10 +30,11 @@ export default function Login({ navigation }) {
             setPasswordError("");
 
             try {
-                await createDatabase();
+                 const response = await schedulesDatabase.signIn(user, password);
 
-                if(await SignIn(user, password)) {
+                if(typeof(response) === "number") {
                     setUserError("");
+                    handleLogin(true, response);
                 }
                 else {
                     setUserError("Usuário ou Senha Inválido");

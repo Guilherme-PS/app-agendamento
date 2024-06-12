@@ -11,7 +11,9 @@ import { Archivo_500Medium, Archivo_600SemiBold } from "@expo-google-fonts/archi
 import { Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 
 import StackRoutes from "./src/routes/StackRoutes";
-import BottomTabRoutes from "./src/routes/BottomTabRoutes";
+import { SQLiteProvider } from "expo-sqlite";
+import { inicializeDatabase } from "./src/db/inicializeDatabase";
+import { LoginProvider } from "./src/screens/Login/LoginProvider";
 
 export default function App() {
     const [appIsReady, setAppIsReady] = useState(false);
@@ -50,9 +52,13 @@ export default function App() {
     return (
         <View style={{ flex: 1 }} onLayout={onLayout}>
             <NavigationContainer>
-                <StatusBar backgroundColor="transparent" barStyle="light-content" translucent={true}/>
+                <SQLiteProvider databaseName="dbApp.db" onInit={inicializeDatabase}>
+                    <LoginProvider>
+                        <StatusBar backgroundColor="transparent" barStyle="light-content" translucent={true}/>
 
-                <StackRoutes/>
+                        <StackRoutes/>
+                    </LoginProvider>
+                </SQLiteProvider>
             </NavigationContainer>
         </View>
     );

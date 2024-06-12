@@ -21,7 +21,7 @@ export default function FormItem({ label, placeholder, secureTextEntry, leftIcon
             onChangeText={ onChangeText }
             value={ value }
             errorMessage={errorMessage}
-            errorStyle={ styles.textError }
+            errorStyle={ [styles.textError, {color: errorMessage == "Usuário Cadastrado com Sucesso!" ? "green" : "red"}] }
         />
     );
 }
@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSans_400Regular",
         letterSpacing: 3,
         margin: 0,
-        marginBottom: 15
+        marginBottom: 15,
     }
 });
