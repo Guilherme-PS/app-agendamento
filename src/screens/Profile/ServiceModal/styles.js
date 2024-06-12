@@ -55,45 +55,6 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
     },
 
-    listContainer: {
-        flexGrow: 1,
-        justifyContent: "center",
-        gap: 15,
-    },
-
-    dateContainer: {
-        borderRadius: 5,
-        width: 55,
-    },
-
-    date: {
-        borderWidth: 1,
-        borderRadius: 5,
-        borderColor: "#B9B9B9",
-        textAlign: "center",
-        fontFamily: "Montserrat_400Regular",
-        fontSize: 15,
-        lineHeight: 20,
-        paddingVertical: 15,
-    },
-
-    hourBtn: {
-        paddingVertical: 3,
-        flexDirection: "row",
-        justifyContent: "space-between"
-    },
-
-    hoursContainer: {
-        borderBottomWidth: 1,
-        borderBottomColor: "#B9B9B9",
-        paddingVertical: 7,
-    },
-
-    hours: {
-        fontFamily: "Montserrat_400Regular",
-        fontSize: 15,
-    },
-
     confirmBtn: {
         padding: 15,
         borderRadius: 7
@@ -103,41 +64,5 @@ export default styles = StyleSheet.create({
         color: "#f9f9f9",
         textAlign: "center",
         fontFamily: "Archivo_500Medium",
-    },
-
-    confirmBox: {
-        flex: 1,
-        backgroundColor: "#272727",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 25
-    },
-
-    confirmText: {
-        fontFamily: "Archivo_500Medium",
-        fontSize: 25,
-        color: "#f9f9f9",
-        marginTop: 10,
-        marginBottom: 20,
-        textAlign: "center"
-    },
-
-    correctImg: {
-        height: 150,
-        width: 150,
-    },
-
-    returnHomeBtn: {
-        paddingHorizontal: 25,
-        paddingVertical: 15,
-        backgroundColor: "#D9BB84",
-        width: "100%",
-        borderRadius: 5
-    },
-
-    returnHomeBtnText: {
-        fontFamily: "Montserrat_400Regular",
-        fontSize: 17,
-        textAlign: "center"
     }
 });

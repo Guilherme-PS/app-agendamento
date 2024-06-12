@@ -10,9 +10,8 @@ export async function inicializeDatabase(database) {
             CREATE TABLE IF NOT EXISTS agendamentos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 agendamentos TEXT NOT NULL,
-                horario DATETIME NOT NULL,
-                usuarioId INTEGER NOT NULL,
-                FOREIGN KEY (usuarioId) REFERENCES usuarios(id)
+                userId INTEGER NOT NULL,
+                FOREIGN KEY (userId) REFERENCES usuarios(id)
             );
         `);
     }

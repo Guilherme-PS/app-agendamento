@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Container from "../../components/Container";
-import { ServiceCard } from "./ServiceCard/index";
+import { ServiceCard } from "./ServiceCard";
 import styles from "./styles";
 
 import Services from "../../data/Serviços/Services.json";
@@ -10,15 +10,15 @@ import { useNavigation } from "@react-navigation/native";
 
 import { _consultData, _removeItem, _retrieveAllData, _storeData } from "../../storage/AsyncStorage";
 import { useSchedulesDatabase } from "../../db/useSchedulesDatabase";
-
 import { useLogin } from "../Login/LoginProvider";
 
 export default function Profile() {
     const navigation = useNavigation();
     const { User } = useLogin();
+    const schedulesDatabase = useSchedulesDatabase();
 
     const [favoriteData, setFavoriteData] = useState([]);
-    const [userData, setUserData] = useState([]);
+    const [userData, setUserData] = useState(null);
 
     useEffect(() => {
         const loadFavorites = async () => {
@@ -26,52 +26,57 @@ export default function Profile() {
             setFavoriteData(favorites);
         };
 
+        const fetchUserData = async () => {
+            if (User) {
+                const data = await schedulesDatabase.getUser(User);
+                setUserData(data);
+            }
+        };
+
+        fetchUserData();
         loadFavorites();
-    }, []);
+    }, [User]);
 
-    const schedulesDatabase = useSchedulesDatabase();
-
-    const fetchUserData = async () => {
-        if(User) {
-            const data = await schedulesDatabase.getUser(User);
-
-            setUserData(data);
-        }
-    }
-
-    fetchUserData();
-    
     const toggleFavorite = useCallback(async (id) => {
         const isFavorite = await _consultData(id.toString());
-
         let updatedFavorites;
 
         if (isFavorite) {
             await _removeItem(id.toString());
-
             updatedFavorites = favoriteData.filter(fav => fav.id !== id);
-        } 
-        else {
-            await _storeData(id.toString(), { id: id });
-
-            updatedFavorites = [...favoriteData, { id: id }];
+        } else {
+            await _storeData(id.toString(), { id });
+            updatedFavorites = [...favoriteData, { id }];
         }
 
         setFavoriteData(updatedFavorites);
     }, [favoriteData]);
 
-    const isFavorite = useCallback((id) => {
-        return favoriteData.some(fav => fav.id === id);
-    }, [favoriteData]);
+    const isFavorite = useCallback((id) => favoriteData.some(fav => fav.id === id), [favoriteData]);
+
+    const renderServiceCard = useCallback(({ item }) => {
+        const favorite = isFavorite(item.id);
+        return (
+            <ServiceCard
+                id={item.id}
+                service={item.service}
+                price={item.price}
+                hours={item.hours}
+                duration={item.duration}
+                onToggleFavorite={toggleFavorite}
+                isFavorited={favorite}
+            />
+        );
+    }, [isFavorite, toggleFavorite]);
 
     return (
         <Container>
             <View style={styles.usernameBox}>
-                <Text style={styles.username}>Olá {userData.usuario}</Text>
+                <Text style={styles.username}>Olá {userData?.usuario}</Text>
                 <Text style={styles.schedulesCount}>Você tem X Serviço(s) Agendado(s)</Text>
             </View>
 
-            <View style={ styles.schedulesBtnBox }>
+            <View style={styles.schedulesBtnBox}>
                 <TouchableOpacity
                     style={styles.schedulesPageBtn}
                     onPress={() => navigation.navigate("Schedules")}
@@ -93,21 +98,7 @@ export default function Profile() {
                     keyExtractor={item => item.id}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    renderItem={({ item }) => {
-                        const favorite = isFavorite(item.id);
-
-                        return (
-                            <ServiceCard
-                                id={item.id}
-                                service={item.service}
-                                price={item.price}
-                                hours={item.hours}
-                                duration={item.duration}
-                                onToggleFavorite={toggleFavorite}
-                                isFavorited={favorite}
-                            />
-                        );
-                    }}
+                    renderItem={renderServiceCard}
                 />
             </View>
         </Container>

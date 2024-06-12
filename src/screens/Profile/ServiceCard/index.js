@@ -44,7 +44,7 @@ export const ServiceCard = memo(({ id, service, price, hours, duration, onToggle
                 </View>
             </TouchableOpacity>
 
-            <ServiceModal service={service} price={price} hours={hours} duration={duration} modalVisible={modalVisible} setModalVisible={setModalVisible}/>
+            <ServiceModal id={id} service={service} price={price} hours={hours} duration={duration} modalVisible={modalVisible} setModalVisible={setModalVisible}/>
         </View>
     );
 });

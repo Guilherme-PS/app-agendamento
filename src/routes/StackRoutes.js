@@ -5,6 +5,7 @@ import { useLogin } from "../screens/Login/LoginProvider";
 import Home from "../screens/Home/index";
 import TopTabRoutes from "./TopTabRoutes";
 import BottomTabRoutes from "./BottomTabRoutes";
+import ScheduleSuccess from "../screens/ScheduleSuccess";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +20,10 @@ export default function StackRoutes() {
         >
             {
                 isLogged ? (
-                    <Stack.Screen name="UserPage" component={BottomTabRoutes} />
+                    <>
+                        <Stack.Screen name="UserPage" component={BottomTabRoutes} />
+                        <Stack.Screen name="ConfirmSchedule" component={ScheduleSuccess}/>
+                    </>
                 ) : (
                     <>
                         <Stack.Screen name="Home" component={Home} />

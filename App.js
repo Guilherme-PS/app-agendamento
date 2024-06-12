@@ -52,7 +52,7 @@ export default function App() {
     return (
         <View style={{ flex: 1 }} onLayout={onLayout}>
             <NavigationContainer>
-                <SQLiteProvider databaseName="dbApp.db" onInit={inicializeDatabase}>
+                <SQLiteProvider databaseName="SchedulesTest.db" onInit={inicializeDatabase}>
                     <LoginProvider>
                         <StatusBar backgroundColor="transparent" barStyle="light-content" translucent={true}/>
 
