@@ -115,21 +115,52 @@ export function useSchedulesDatabase() {
         return false;
     }
 
-    async function searchByDate(data) {
-        const dataString = JSON.stringify(data);
-
-        const checkDateQuery = `SELECT agendamentos FROM agendamentos WHERE agendamentos = $data`;
+    async function countSchedules(id) {
+        const countSchedulesQuery = `SELECT COUNT(agendamentos) FROM agendamentos WHERE userId = $userId`;
 
         try {
-            const response = await database.getFirstAsync(checkDateQuery, `%${dataString}%`);
+            const result = await database.getFirstAsync(countSchedulesQuery, {
+                $userId: id,
+            });
             
-            console.log(response)
-        }
-
+            return result["COUNT(agendamentos)"];
+        } 
         catch (error) {
             console.log(error);
         }
     }
 
-    return { signUp, signIn, getUser, toSchedule };
+    async function getAllSchedules(id) {
+        const getAllSchedulesQuery = `SELECT id, agendamentos FROM agendamentos WHERE userId = $userId`;
+
+        try {
+            const result = await database.getAllAsync(getAllSchedulesQuery, {
+                $userId: id
+            });
+
+            return result;
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+
+    async function removeSchedule(scheduleId) {
+        const removeScheduleQuery = 'DELETE FROM agendamentos WHERE id = $id';
+    
+        try {
+            await database.runAsync(removeScheduleQuery, {
+                $id: scheduleId
+            });
+    
+            return true;
+    
+        } 
+        catch(error) {
+            console.log(error);
+        }
+    }
+    
+
+    return { signUp, signIn, getUser, toSchedule, countSchedules, getAllSchedules, removeSchedule };
 }

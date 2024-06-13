@@ -3,7 +3,6 @@ import BottomTabButton from "../../assets/animations/BottomTabButton";
 
 import Profile from "../screens/Profile";
 import Schedules from "../screens/Schedules";
-import Favorites from "../screens/Favorites";
 import User from "../screens/User";
 
 const BottomTabArr = [{
@@ -16,11 +15,6 @@ const BottomTabArr = [{
         label: "Agendamentos",
         icon: "clock",
         component: Schedules,
-    }, {
-        route: "Favorites",
-        label: "Favoritos",
-        icon: "heart",
-        component: Favorites,
     }, { 
         route: "User", 
         label: "Minha Conta", 

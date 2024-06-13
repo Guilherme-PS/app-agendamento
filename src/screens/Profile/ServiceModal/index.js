@@ -14,7 +14,7 @@ const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Jul
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth();
 
-export default function ServiceModal({ id, service, price, hours, duration, modalVisible, setModalVisible }) {
+export default function ServiceModal({ id, service, price, hours, duration, modalVisible, setModalVisible, setCount }) {
     const navigation = useNavigation();
 
     const schedulesDatabase = useSchedulesDatabase();
@@ -32,10 +32,11 @@ export default function ServiceModal({ id, service, price, hours, duration, moda
         const date = new Date(Date.UTC(currentYear, currentMonth, selectedDay.Day, hour, min));
         const response = await schedulesDatabase.toSchedule(User, { id, date });
         
-        if (response) {
+        if(response) {
             setSelectedDay(null);
             setSelectedHour(null);
-            toggleModal(); 
+            toggleModal();
+            setCount(await schedulesDatabase.countSchedules(User)) 
             
             navigation.navigate("ConfirmSchedule");
         }

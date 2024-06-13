@@ -27,7 +27,7 @@ export default function HourPicker({ hours, selectedHour, onSelectHour }) {
             data={hours}
             contentContainerStyle={styles.listContainer}
             renderItem={renderItem}
-            keyExtractor={(item) => item}
+            keyExtractor={ (item) => item }
         />
     );
 }

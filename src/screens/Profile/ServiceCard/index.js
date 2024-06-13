@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { imgPaths } from "../../../data/Serviços/ImgPath";
 import ServiceModal from "../ServiceModal/index";
 
-export const ServiceCard = memo(({ id, service, price, hours, duration, onToggleFavorite, isFavorited }) => {
+export const ServiceCard = memo(({ id, service, price, hours, duration, onToggleFavorite, isFavorited, setCount}) => {
     const handlePress = () => {
         onToggleFavorite(id);
     };
@@ -44,7 +44,7 @@ export const ServiceCard = memo(({ id, service, price, hours, duration, onToggle
                 </View>
             </TouchableOpacity>
 
-            <ServiceModal id={id} service={service} price={price} hours={hours} duration={duration} modalVisible={modalVisible} setModalVisible={setModalVisible}/>
+            <ServiceModal id={id} service={service} price={price} hours={hours} duration={duration} modalVisible={modalVisible} setModalVisible={setModalVisible} setCount={ setCount }/>
         </View>
     );
 });

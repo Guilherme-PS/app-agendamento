@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import React, { useState, useEffect, useCallback } from "react";
+import { View, Text, FlatList, TouchableOpacity, StatusBar } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Container from "../../components/Container";
 import { ServiceCard } from "./ServiceCard";
@@ -19,6 +19,7 @@ export default function Profile() {
 
     const [favoriteData, setFavoriteData] = useState([]);
     const [userData, setUserData] = useState(null);
+    const [countSchedules, setCountSchedules] = useState(""); 
 
     useEffect(() => {
         const loadFavorites = async () => {
@@ -33,6 +34,12 @@ export default function Profile() {
             }
         };
 
+        const fetchCountSchedules = async () => {
+            const count = await schedulesDatabase.countSchedules(User);
+            setCountSchedules(count.toString());
+        };
+
+        fetchCountSchedules();
         fetchUserData();
         loadFavorites();
     }, [User]);
@@ -56,6 +63,7 @@ export default function Profile() {
 
     const renderServiceCard = useCallback(({ item }) => {
         const favorite = isFavorite(item.id);
+
         return (
             <ServiceCard
                 id={item.id}
@@ -65,15 +73,18 @@ export default function Profile() {
                 duration={item.duration}
                 onToggleFavorite={toggleFavorite}
                 isFavorited={favorite}
+                setCount={ setCountSchedules }
             />
         );
     }, [isFavorite, toggleFavorite]);
 
     return (
         <Container>
+            <StatusBar backgroundColor="transparent" barStyle="light-content" translucent={true} />
+
             <View style={styles.usernameBox}>
                 <Text style={styles.username}>Olá {userData?.usuario}</Text>
-                <Text style={styles.schedulesCount}>Você tem X Serviço(s) Agendado(s)</Text>
+                <Text style={styles.schedulesCount}>Você tem { countSchedules } Serviço(s) Agendado(s)</Text>
             </View>
 
             <View style={styles.schedulesBtnBox}>
